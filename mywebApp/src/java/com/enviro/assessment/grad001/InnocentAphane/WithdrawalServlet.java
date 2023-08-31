@@ -27,6 +27,7 @@ public class WithdrawalServlet extends HttpServlet {
 
     @EJB
     private ProductFacadeLocal pfl;
+    @EJB
     private WithdrawalNoticeFacadeLocal wnfl;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -64,7 +65,7 @@ public class WithdrawalServlet extends HttpServlet {
             double closingBalance = product.getBalance() - withdrawalAmount;
             
             WithdrawalNotice notice = createNotice(withdrawalAmount,product);
-            //wnfl.create(notice);
+            wnfl.create(notice);
             
             
             //display for withdrawal notice
