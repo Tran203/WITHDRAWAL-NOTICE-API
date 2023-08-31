@@ -1,3 +1,8 @@
+<%@page import="com.enviro.assessment.grad001.AphaneInnocent.entities.Investor"%>
+<%
+    Investor investor = (Investor) request.getAttribute("investor");
+%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -7,7 +12,7 @@
 <body>
     <div class="container">
         <h1>Product Selection Successful</h1>
-        <p>Thank you for selecting a product, ${investor.firstName}!</p>
+        <p>Thank you for selecting a product, <%=investor.getFirstName()%>!</p>
 
         <h2>Your Investments:</h2>
         <table>

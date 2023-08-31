@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,6 +40,8 @@ public class InvestorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession(true);
+        
         //Investor Details
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
@@ -51,8 +54,9 @@ public class InvestorServlet extends HttpServlet {
         
         //record to database
         ifl.create(investor);
+        System.out.println(investor.getFirstName());
         
-        request.setAttribute("investor", investor);
+        session.setAttribute("investor", investor);
         
         request.getRequestDispatcher("register_successful.jsp").forward(request, response);
     }

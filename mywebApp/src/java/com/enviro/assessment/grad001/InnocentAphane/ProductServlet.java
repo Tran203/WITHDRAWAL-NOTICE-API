@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -40,9 +41,11 @@ public class ProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession(true);
+        
         //Investor Info
-        Long investorId = Long.parseLong(request.getParameter("investorId"));
-        Investor investor = ifl.find(investorId);
+        Investor investor = (Investor) session.getAttribute("investor");
+        System.out.println(investor.getFirstName());
         
         // Retrieve product info
         String productType = request.getParameter("productType");
@@ -59,9 +62,9 @@ public class ProductServlet extends HttpServlet {
         
         
         //get all the user's investment products
-
+         
         // Redirect to a success page or display a confirmation message
-        response.sendRedirect("/product-selection-success.jsp");
+        response.sendRedirect("products.jsp");
     }
 
     private Product createProduct(String productType, String productName, double initialBalance, Investor investor) {

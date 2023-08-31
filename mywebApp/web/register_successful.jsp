@@ -6,7 +6,7 @@
 
 <%@page import="com.enviro.assessment.grad001.AphaneInnocent.entities.Investor"%>
 <%
-    Investor investor = (Investor) request.getAttribute("investor");
+    Investor investor = (Investor) session.getAttribute("investor");
 %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
