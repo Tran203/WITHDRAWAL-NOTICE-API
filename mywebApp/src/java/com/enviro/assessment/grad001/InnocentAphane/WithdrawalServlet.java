@@ -51,6 +51,7 @@ public class WithdrawalServlet extends HttpServlet {
             
         }else{
             //success notice
+            //withdraw tuu
             request.getRequestDispatcher("/sucess.jsp").forward(request, response); // Redirect to a success page
         }
         
