@@ -18,7 +18,7 @@
         <p>Current Balance: ${product.balance}</p>
 
         <h2>Withdrawal Form:</h2>
-        <form action="/submit-withdrawal" method="post">
+        <form action="WithdrawalServlet.do" method="post">
             <input type="hidden" name="productId" value="${product.id}">
             
             <label for="withdrawalAmount">Withdrawal Amount:</label>

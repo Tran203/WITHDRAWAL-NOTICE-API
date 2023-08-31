@@ -34,7 +34,7 @@
                     <td><%=product.getName()%></td>
                     <td><%=product.getBalance()%></td>
                     <td>
-                        <form action="WithdrawalServlet.do" method="post">
+                        <form action="WithdrawalServlet.do" method="get">
                             <input type="hidden" name="productId" value="<%=product.getId()%>">
                             <input type="submit" value="Withdraw">
                         </form>
