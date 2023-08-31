@@ -11,6 +11,7 @@ import com.enviro.assessment.grad001.AphaneInnocent.entities.Investor;
 import com.enviro.assessment.grad001.AphaneInnocent.entities.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +26,6 @@ import javax.servlet.http.HttpSession;
 public class ProductServlet extends HttpServlet {
     @EJB
     private ProductFacadeLocal pfl;
-    private InvestorFacadeLocal ifl;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,7 +45,6 @@ public class ProductServlet extends HttpServlet {
         
         //Investor Info
         Investor investor = (Investor) session.getAttribute("investor");
-        System.out.println(investor.getFirstName());
         
         // Retrieve product info
         String productType = request.getParameter("productType");
@@ -57,14 +56,16 @@ public class ProductServlet extends HttpServlet {
         Product product = createProduct(productType,productName,initialBalance,investor);
         pfl.create(product);
 
-        //
-        request.setAttribute("investor", investor);
-        
         
         //get all the user's investment products
+        List<Product> listProduct = pfl.findAll();
+        
+        //
+        request.setAttribute("investor", investor);
+        request.setAttribute("listProduct", listProduct);
          
         // Redirect to a success page or display a confirmation message
-        response.sendRedirect("products.jsp");
+        request.getRequestDispatcher("products.jsp").forward(request, response);
     }
 
     private Product createProduct(String productType, String productName, double initialBalance, Investor investor) {

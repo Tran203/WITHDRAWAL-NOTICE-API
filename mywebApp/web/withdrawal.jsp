@@ -1,3 +1,8 @@
+<%@page import="com.enviro.assessment.grad001.AphaneInnocent.entities.Product"%>
+<%
+    Product product = (Product) session.getAttribute("product");
+%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

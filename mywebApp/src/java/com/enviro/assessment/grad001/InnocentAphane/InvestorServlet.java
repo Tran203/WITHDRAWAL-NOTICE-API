@@ -54,7 +54,6 @@ public class InvestorServlet extends HttpServlet {
         
         //record to database
         ifl.create(investor);
-        System.out.println(investor.getFirstName());
         
         session.setAttribute("investor", investor);
         
